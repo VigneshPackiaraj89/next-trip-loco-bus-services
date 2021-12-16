@@ -1,0 +1,44 @@
+{
+  "name": "next-trip-loco-bus-services",
+  "version": "1.0.0",
+  "description": "page to show the loco bus services timing and routes",
+  "scripts": {
+    "start": "webpack-dev-server --env development",
+    "build": "rm -rf dist lib views && webpack --env production --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VigneshPackiaraj89/next-trip-loco-bus-services.git"
+  },
+  "author": "vignesh p p",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VigneshPackiaraj89/next-trip-loco-bus-services/issues"
+  },
+  "homepage": "https://github.com/VigneshPackiaraj89/next-trip-loco-bus-services#readme",
+  "devDependencies": {
+    "@babel/cli": "7.11.6",
+    "@babel/core": "7.11.6",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^4.3.0",
+    "html-webpack-plugin": "^4.5.0",
+    "less-loader": "^7.0.1",
+    "path": "^0.12.7",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.3",
+    "whatwg-fetch": "^3.6.2"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
+    "style-loader": "2.0.0"
+  }
+}
