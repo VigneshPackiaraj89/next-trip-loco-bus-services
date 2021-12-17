@@ -1,0 +1,72 @@
+#header .navbar {
+    padding: 0.5rem 15px
+}
+#header .navbar .navbar-brand {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+li.nav-item.dropdown {
+    margin-left: 3rem;
+}
+
+li a {
+    color: rgba(52, 58, 64, 0.7) !important;
+}
+
+#header .navbar .navbar-nav .nav-item .nav-link:hover {
+    color: #fff;
+    background-color: #0097d0;
+}
+
+.go-to-icon {
+    background-image: url(./static-assets/goto-icon-color.svg);
+}
+
+.store-icon {
+    background-image: url(./static-assets/shopping-cart-green.svg);
+}
+
+.search-icon {
+    background-image: url(./static-assets/store-icon.svg);
+}
+
+.go-to-icon, .store-icon, .search-icon {
+    background-repeat: no-repeat;
+    background-size: 1.6875rem;
+    width: 1.6875rem;
+    height: 1.6875rem;
+}
+
+@media (min-width: 1200px){
+    #header .navbar .utilities {
+        border-left: 1px solid #e3e3e0;
+        padding-left: 1rem;
+    }
+    #header .navbar {
+        padding: 0 !important;
+    }
+
+    .go-to-icon {
+        background-size: 3.25rem;
+        width: 3.25rem;
+        height: 3.5rem;
+    }
+
+    .store-icon, .search-icon {
+        background-size: 2.25rem;
+        width: 2.25rem;
+        height: 2.5rem;
+        margin-top: 0.8rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    font-size: 1.25rem !important;
+}
+
+

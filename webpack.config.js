@@ -2,6 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 function envAwareConfig(env) {
 	const isProduction = env === 'production'
 	return {
@@ -68,7 +70,11 @@ function getPlugins(isProduction) {
 			new webpack.DefinePlugin({'process.env.NODE_ENV': '"production"'}),
 			new HtmlWebpackPlugin({
 				template: './src/templates/next-trip.html'
-			})
+			}),
+			new CopyWebpackPlugin({
+				patterns: [
+				  { from: "src/components/static-assets", to: "static-assets" }
+				]})
 		]
 	}
 	return [

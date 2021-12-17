@@ -11,12 +11,11 @@ const cb = ''
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter baseName="/nexttrip/busservices">
+        <BrowserRouter baseName="/">
                 <div className={`nexttrip`}>
                     <Switch>
-                        <Route exact path='*' component={MainComponent}/>
+                        <Route exact path='/nextrip' component={MainComponent}/>
                     </Switch>
                 </div>
         </BrowserRouter>
-    </Provider>, document.getElementById('next-trip-wrapper')
-)
+    </Provider>, document.getElementById('next-trip-wrapper'))
