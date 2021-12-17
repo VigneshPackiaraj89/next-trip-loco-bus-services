@@ -1,2 +1,2 @@
 # @next-trip-loco-bus-services
-The purpose of this application is to display minneapolis metro transit bus line information
+The purpose of this application is to display metro transit bus line information
