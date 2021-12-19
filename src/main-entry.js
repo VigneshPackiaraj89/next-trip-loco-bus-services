@@ -4,7 +4,9 @@ import {Provider} from 'react-redux'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import './main-entry.less'
 import makeStore from './store' 
-import {MainComponent} from './components/main-component'
+import {NextTripMainComponent} from './components/next-trip-main-component'
+import {InitialPage} from './components/intial-page'
+import {Footer} from './components/footer'
 
 const store = makeStore()
 const cb = ''
@@ -14,8 +16,10 @@ ReactDOM.render(
         <BrowserRouter baseName="/">
                 <div className={`nexttrip`}>
                     <Switch>
-                        <Route exact path='/nextrip' component={MainComponent}/>
+                        <Route exact path='/nextrip' component={NextTripMainComponent}/>
+                        <Route path='*' component={InitialPage}/>    
                     </Switch>
+                    <Footer />
                 </div>
         </BrowserRouter>
     </Provider>, document.getElementById('next-trip-wrapper'))
