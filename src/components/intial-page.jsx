@@ -1,6 +1,5 @@
 import React from 'react'
 import './initial-page.less'
-import {NEXT_TRIP_ROUTE} from '../utils/constants'
 import {Header} from './header'
 import {NextTripImage} from './next-trip-image'
 

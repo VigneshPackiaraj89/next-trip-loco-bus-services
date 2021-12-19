@@ -9,14 +9,13 @@ import {InitialPage} from './components/intial-page'
 import {Footer} from './components/footer'
 
 const store = makeStore()
-const cb = ''
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter baseName="/">
                 <div className={`nexttrip`}>
                     <Switch>
-                        <Route exact path='/nextrip' component={NextTripMainComponent}/>
+                        <Route exact path='/nextrip*' component={NextTripMainComponent}/>
                         <Route path='*' component={InitialPage}/>    
                     </Switch>
                     <Footer />

@@ -7,6 +7,10 @@ export function busdetails(state = {busDetailsData:{}, detailsError: false}, act
 
         case Types.BUS_DETAILS_API_ERROR:
             return {...state, busDetailsData: {}, detailsError: true}
+
+        case Types.RESET_STOPS_INFO: 
+            return {...state, busDetailsData: {}, detailsError: false}
+        
     default:    
         return state    
     }

@@ -6,8 +6,10 @@ import {getStops} from '../actions/get-stops'
 import {getStopsNumber} from '../actions/get-stops-number'
 import {getStationDetails} from '../actions/get-station-details'
 import {ErrorHandling} from  './error-handling'
+import * as Types from '../actions/action-types'
+import showTrain from './static-assets/bus-broadcast-color.svg'
 
-export const NextTrip = (props) => {
+export const NextTrip = () => {
     const dispatch = useDispatch()
     const {data} = useSelector(state => state.busroutes)
     const {directionData} = useSelector(state => state.busdirections)
@@ -19,6 +21,18 @@ export const NextTrip = (props) => {
     const [busstop, setStop] = React.useState('')
     const [byRoute, setByRoute] = React.useState(true)
     const [tblRerender, setTableRender] = React.useState(false)
+    const [userInputStopNo, setUserInputStopNo] = React.useState(0)
+
+    React.useEffect(() => {
+        var locUrl = window.location.pathname.split('/')
+        if(locUrl.length === 5) {
+            dispatch(getStationDetails(locUrl[4], locUrl[3], locUrl[2]))
+            setByRoute(true)
+        } else if(locUrl.length === 3) {
+            dispatch(getStopsNumber(locUrl[2]))
+            setByRoute(false)
+        }
+    },[])
 
     const trackChange = (e) => {
         setBusDirection('')
@@ -42,22 +56,29 @@ export const NextTrip = (props) => {
 
     const dispatchStopNumber = (e) => {
         let stopNumber = document.getElementById('search-input').value
-        console.log(stopNumber)
+        setUserInputStopNo(stopNumber)
         dispatch(getStopsNumber(stopNumber))
+    }
+
+    const resetSearchCriteria = () => {
+        setByRoute(!byRoute)
+        setBusRoute('')
+        setBusDirection('')
+        setStop('')
+        dispatch({type: Types.RESET_STOPS_INFO})
     }
 
     return(
     <div className={`next-trip`}>
-        <ErrorHandling />
         <div className="card mb-4">
             <h2 className="text-center mb-4 mb-lg-5">Real-time Departures</h2>
             <div className="d-flex justify-content-center mb-4">
                 <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li className="nav-item" role="presentation">
-                        <a className="nav-link nextrip-tab active" onClick={()=> setByRoute(true)}id="byRouteTab" data-toggle="pill" href="#byRoute" role="tab" aria-controls="byRouteTab" aria-selected="true">By route</a>
+                        <a className="nav-link nextrip-tab active" onClick={()=> resetSearchCriteria()}id="byRouteTab" data-toggle="pill" href="#byRoute" role="tab" aria-controls="byRouteTab" aria-selected="true">By route</a>
                     </li>
                     <li className="nav-item" role="presentation">
-                        <a className="nav-link nextrip-tab" onClick={()=> setByRoute(false)} id="byStopNumTab" data-toggle="pill" href="#byRouteNum" role="tab" aria-controls="byRouteNumTab" aria-selected="false">By stop #</a>
+                        <a className="nav-link nextrip-tab" onClick={()=> resetSearchCriteria()} id="byStopNumTab" data-toggle="pill" href="#byRouteNum" role="tab" aria-controls="byRouteNumTab" aria-selected="false">By stop #</a>
                     </li>
                 </ul>       
             </div>
@@ -96,8 +117,8 @@ export const NextTrip = (props) => {
                         <fieldset className="mb-0">
                             <legend className="sr-only">Real-time departures by stop</legend>
                             <div class="input-group mb-3" id="search-input-group" >
-                                <input type="number" id="search-input" class="form-control" placeholder="Enter stop number" aria-label="Enter stop number" aria-describedby="basic-addon2" />                                    
-                                <label class="form-control-placeholder" for="name">Full Name</label>
+                                <input type="text" id="search-input" class="form-control" aria-label="Enter stop number" aria-describedby="basic-addon2" required/>                                    
+                                <label class="form-control-placeholder" for="name">Enter stop number</label>
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onClick={() => dispatchStopNumber()}> <i class="fa fa-search"></i></button>
                                 </div>
@@ -146,14 +167,13 @@ export const NextTrip = (props) => {
                 </div>
             </div>
         </div>}
-        {busDetailsData & busDetailsData.departures && busDetailsData.departures.length !== 0 && <div id="showMyBus" className="accordion nt-show-my-bus" aria-hidden="true">
+        { busDetailsData.departures && busDetailsData.departures.length !== 0 && 
+        <div id="showMyBus" className="accordion nt-show-my-bus" aria-hidden="true">
             <button type="button" className="btn d-flex align-items-center btn-block text-left" data-toggle="collapse" data-target="#collapseMap" aria-expanded="true">
+                <img className= 'show-train' src={showTrain}/> 
                 <h3>Show my train</h3>
             </button>
-            <div id="collapseMap" class ="collapse show">
-                <div class ="map-container">
-                </div>
-            </div>
         </div>}
+        <ErrorHandling userInputStopNo={userInputStopNo}/>
     </div>)
 }

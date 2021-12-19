@@ -69,7 +69,8 @@ function getPlugins(isProduction) {
 		return [
 			new webpack.DefinePlugin({'process.env.NODE_ENV': '"production"'}),
 			new HtmlWebpackPlugin({
-				template: './src/templates/next-trip.html'
+				template: './templates/next-trip.ejs',
+				filename: '../views/main.dust'
 			}),
 			new CopyWebpackPlugin({
 				patterns: [
@@ -80,7 +81,8 @@ function getPlugins(isProduction) {
 	return [
 		new webpack.DefinePlugin({'process.env.NODE_ENV': '"development"'}),
 		new HtmlWebpackPlugin({
-			template: './src/templates/next-trip.html'
+			template: './templates/next-trip.ejs',
+			filename: 'index.html'
 		}
 		),
 		new webpack.HotModuleReplacementPlugin()

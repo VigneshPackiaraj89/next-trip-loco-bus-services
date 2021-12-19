@@ -1,0 +1,5 @@
+{
+    "metaLayer": {
+        "static": "http://localhost:3000/dist"
+    }
+}
