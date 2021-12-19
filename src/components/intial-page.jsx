@@ -9,9 +9,6 @@ export const InitialPage = (props) => {
         <div className={`initial-page-container`}>
             <Header />
             <NextTripImage page="initial"/>
-            <div className="busroutes">
-                <span >Bus Routes: </span>
-                <button type="button" className="btn btn-primary btn-lg" onClick={()=>props.history.push(NEXT_TRIP_ROUTE)}>Next Trip</button>
-            </div>
+            <div className="busroutes"></div>
         </div>)
 }

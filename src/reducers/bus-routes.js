@@ -1,6 +1,6 @@
 import * as Types from  '../actions/action-types'
 
-export function busroutes(state = {}, action = {}) {
+export function busroutes(state = {data:[]}, action = {}) {
     switch(action.type) {
         case Types. STORE_ROUTES_INFO:
             return {...state, data: action.data}

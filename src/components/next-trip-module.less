@@ -1,3 +1,4 @@
+
 .next-trip {
     padding-top: 6rem;
 }
@@ -47,7 +48,7 @@ h2.text-center.mb-4.mb-lg-5 {
 
 #nextripDepartures .card {
     background-color: #f5f5f4 !important;
-    padding: 1rem 0 0 0 !important;
+    padding: 2rem 0 0 0 !important;
     width: 70%;
     margin: auto;
 } 
@@ -59,16 +60,19 @@ h2.text-center.mb-4.mb-lg-5 {
     margin: auto;
 }
 
-#nextripDepartures .card table.departures-table thead tr th {
+#nextripDepartures .card table thead tr th {
     background-color: #ffd200;
     border-top: none;
     border-bottom: none;
     text-transform: uppercase;
     letter-spacing: 1.28px;
+    font-size: 1.7rem;
+    padding: 1rem;
 }
 
 .table th, .table td {
-    padding: 1rem;
+    padding: 2rem;
+    font-size: 2.3rem;
 }
 
 .stop-description.mb-3 {
@@ -77,6 +81,8 @@ h2.text-center.mb-4.mb-lg-5 {
 
 span.stop-number {
     margin-left: auto;
+    margin-right: 2rem;
+    margin-top: 0.5rem;
 }
 
 .accordion .btn {
@@ -86,6 +92,20 @@ span.stop-number {
     font-size: 1.125rem !important;
     margin-bottom: 0;
     padding: 0.657rem 0.5rem;
+}
+
+.route-number, .depart-time {
+    font-weight: 700
+}
+
+.depart-time {
+    text-align: right!important;
+}
+
+.stop-name {
+    font-weight: 500;
+    margin-left: 2rem;
+    font-size: 3rem;
 }
 
 @media (min-width: 768px){
@@ -125,4 +145,56 @@ span.stop-number {
     input#search-input {
         border-right: 0
     }
+}
+
+table.departures-table tr:nth-child(n+4) {
+    display: none;
+  }
+
+table.departures-table-render tr:nth-child(n+4) {
+    display: table-row;
+}
+
+.stop-departures {
+    margin-bottom: 2rem;
+}
+
+#nextripDepartures .card .show .h4 {
+    position: relative;
+    color: #626462;
+    line-height: 1.5;
+    margin-left: 3rem;
+    font-size: 1.8rem;
+}
+
+tr {
+    border-bottom: 0.1rem solid grey;
+}
+
+.show.more::before {
+    content: '';
+    background-image: url(./static-assets/circle-plus-blue.svg);
+    background-repeat: no-repeat;
+    background-size: 2rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    position: absolute;
+    top: 0.8rem;
+    left: 1rem;
+}
+
+.show.less::before {
+    content: '';
+    background-image: url(./static-assets/circle-minus-blue.svg);
+    background-repeat: no-repeat;
+    background-size: 2rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    position: absolute;
+    top: 0.8rem;
+    left: 1rem;
+}
+
+button.btn.btn-toggle.show {
+    position: relative;
 }

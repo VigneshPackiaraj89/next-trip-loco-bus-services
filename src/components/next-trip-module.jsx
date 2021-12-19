@@ -3,17 +3,22 @@ import './next-trip-module.less'
 import {useSelector, useDispatch} from 'react-redux'
 import {getDirections} from '../actions/get-directions'
 import {getStops} from '../actions/get-stops'
+import {getStopsNumber} from '../actions/get-stops-number'
+import {getStationDetails} from '../actions/get-station-details'
+import {ErrorHandling} from  './error-handling'
 
 export const NextTrip = (props) => {
     const dispatch = useDispatch()
     const {data} = useSelector(state => state.busroutes)
     const {directionData} = useSelector(state => state.busdirections)
     const {stopsData} = useSelector(state => state.busstops)
+    const {busDetailsData} = useSelector(state => state.busdetails)
+
     const [busroute, setBusRoute] = React.useState('')
     const [busdirection, setBusDirection] = React.useState('')
     const [busstop, setStop] = React.useState('')
     const [byRoute, setByRoute] = React.useState(true)
-
+    const [tblRerender, setTableRender] = React.useState(false)
 
     const trackChange = (e) => {
         setBusDirection('')
@@ -32,10 +37,18 @@ export const NextTrip = (props) => {
     const trackStop= (e) => {
         const {value} = e.target
         setStop(value)
+        dispatch(getStationDetails(value, busdirection, busroute))
+    }
+
+    const dispatchStopNumber = (e) => {
+        let stopNumber = document.getElementById('search-input').value
+        console.log(stopNumber)
+        dispatch(getStopsNumber(stopNumber))
     }
 
     return(
     <div className={`next-trip`}>
+        <ErrorHandling />
         <div className="card mb-4">
             <h2 className="text-center mb-4 mb-lg-5">Real-time Departures</h2>
             <div className="d-flex justify-content-center mb-4">
@@ -58,7 +71,7 @@ export const NextTrip = (props) => {
                                 <select id="ntRoute" name="ntRoute" className="custom-select" onChange={trackChange} value={busroute}>
                                     <option selected="">Select route</option>
                                     {data && data.map((item) => {
-                                        return <option value={item.Route}> {item.Description} </option>
+                                        return <option value={item.route_id}> {item.route_label} </option>
                                     })}
                                 </select>
                             </div>
@@ -66,7 +79,7 @@ export const NextTrip = (props) => {
                                 <select id="ntDirection" name="ntDirection" className="custom-select"  onChange={trackDirection} value={busdirection}>
                                     <option selected="">Select direction</option>
                                     {directionData && directionData.map((item) => {
-                                        return <option value={item.Value}> {item.Text} </option>
+                                        return <option value={item.direction_id}> {item.direction_name} </option>
                                     })}
                                 </select>
                             </div>}
@@ -74,7 +87,7 @@ export const NextTrip = (props) => {
                                 <select id="ntStop" name="ntStop" className="custom-select" onChange={trackStop} value={busstop}>
                                     <option selected="">Select stop</option>
                                     {stopsData && stopsData.map((item) => {
-                                        return <option value={item.Value}> {item.Text} </option>
+                                        return <option value={item.place_code}> {item.description} </option>
                                     })}
                                 </select>
                             </div>}   
@@ -83,9 +96,10 @@ export const NextTrip = (props) => {
                         <fieldset className="mb-0">
                             <legend className="sr-only">Real-time departures by stop</legend>
                             <div class="input-group mb-3" id="search-input-group" >
-                                <input type="text" id="search-input" class="form-control" placeholder="Enter stop number" aria-label="Enter stop number" aria-describedby="basic-addon2" />
+                                <input type="number" id="search-input" class="form-control" placeholder="Enter stop number" aria-label="Enter stop number" aria-describedby="basic-addon2" />                                    
+                                <label class="form-control-placeholder" for="name">Full Name</label>
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button"> <i class="fa fa-search"></i></button>
+                                    <button class="btn btn-outline-secondary" type="button" onClick={() => dispatchStopNumber()}> <i class="fa fa-search"></i></button>
                                 </div>
                                 </div>
                         </fieldset>
@@ -94,15 +108,15 @@ export const NextTrip = (props) => {
                 </div>
             </div>
         </div>
-       {busstop &&  <div id="nextripDepartures" className="nextrip-departures">
+       {Object.keys(busDetailsData).length !== 0 &&  <div id="nextripDepartures" className="nextrip-departures">
             <div className="card mb-3 p-3 p-md-3">
                 <a name="nextriptop"></a>
                 <div className="stop-description mb-3">
-                   <span><h3 className="h2 stop-name">MOA Transit Station</h3></span>
-                    <span className="stop-number"><strong>Stop #: </strong>51405</span>
+                   <span><h3 className="h2 stop-name">{busDetailsData.stops[0].description}</h3></span>
+                    <span className="stop-number"><strong>Stop #: </strong>{busDetailsData.stops[0].stop_id}</span>
                 </div>
                 <div className="stop-departures">
-                    <table className="table departures-table">
+                    <table className={tblRerender ? "table departures-table-render" : "table departures-table"}>
                         <caption className="sr-only">Departures table</caption>
                         <thead>
                             <tr>
@@ -112,35 +126,33 @@ export const NextTrip = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="departure">
-                                <td className="route-number mr-2">Blue</td>
-                                <td className="route-name">to Mpls-Target Field</td>
-                                <td className="depart-time ml-auto">
-                                    <span>11 Min</span>
-                                </td>
-                            </tr>
-                            <tr className="departure">
-                                <td className="route-number mr-2">Blue</td>
-                                <td className="route-name">to Mpls-Target Field</td>
-                                <td className="depart-time ml-auto">
-                                    <span>1:32</span>
-                                </td>
-                            </tr>
-                            </tbody>
+                                {busDetailsData.departures && busDetailsData.departures.length === 0 ?
+                                     <tr className="departure"><td><b>No departures at this time</b></td></tr>
+                                :
+                                busDetailsData.departures.map((item) =>
+                                <tr>
+                                    <td className="route-number mr-2">{item.route_short_name}</td>
+                                    <td className="route-name">{item.description}</td>
+                                    <td className="depart-time ml-auto">
+                                        <span>{item.departure_text}</span>
+                                    </td>
+                                </tr>)}
+                        </tbody>
                     </table>
-                    <button type="button" className="btn btn-toggle show more" aria-expanded="false">
+                    {busDetailsData.departures.length > 3 && 
+                        <button type="button" className={tblRerender ? `btn btn-toggle show less`: `btn btn-toggle show more`} aria-expanded="false" onClick={()=>setTableRender(!tblRerender)}>
                         <span className="h4">Departures</span>
-                    </button>
+                    </button>}
                 </div>
             </div>
         </div>}
-        {busstop && <div id="showMyBus" className="accordion nt-show-my-bus" aria-hidden="true">
+        {busDetailsData & busDetailsData.departures && busDetailsData.departures.length !== 0 && <div id="showMyBus" className="accordion nt-show-my-bus" aria-hidden="true">
             <button type="button" className="btn d-flex align-items-center btn-block text-left" data-toggle="collapse" data-target="#collapseMap" aria-expanded="true">
                 <h3>Show my train</h3>
             </button>
             <div id="collapseMap" class ="collapse show">
-                    <div class ="map-container">
-                    </div>
+                <div class ="map-container">
+                </div>
             </div>
         </div>}
     </div>)
