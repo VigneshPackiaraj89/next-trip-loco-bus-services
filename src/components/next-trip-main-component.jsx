@@ -15,6 +15,6 @@ export const NextTripMainComponent = (props) => {
     <div className={`main-container`}>
         <Header {...props}/>
         <NextTripImage />
-        <NextTrip  {...props}/>
+        <NextTrip />
     </div>)
 }

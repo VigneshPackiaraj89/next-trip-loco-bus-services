@@ -8,3 +8,10 @@ Testing in webpack dev server
 4. Hit url 'http://localhost:8081/'
 5. In the navigation under trip tools, select  nextrip or provide url http://localhost:8081/nextrip
  
+ 
+Testing in node server
+1. npm run start-node
+2. Hit url 'http://localhost:3000/'
+3. In the navigation under trip tools, select  nextrip or provide url http://localhost:3000/nextrip
+ 
+ 

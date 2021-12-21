@@ -4,8 +4,7 @@ import {Provider} from 'react-redux'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import './main-entry.less'
 import makeStore from './store' 
-import {NextTripMainComponent} from './components/next-trip-main-component'
-import {InitialPage} from './components/intial-page'
+import {Mainlayout} from './components/main-layout'
 import {Footer} from './components/footer'
 
 const store = makeStore()
@@ -15,8 +14,7 @@ ReactDOM.render(
         <BrowserRouter baseName="/">
                 <div className={`nexttrip`}>
                     <Switch>
-                        <Route exact path='/nextrip*' component={NextTripMainComponent}/>
-                        <Route path='*' component={InitialPage}/>    
+                        <Route path='*' component={Mainlayout}/>    
                     </Switch>
                     <Footer />
                 </div>

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --env development",
     "start-node": "node server.js",
-    "build": "rm -rf dist lib views && webpack --env production --progress"
+    "build": "eslint && rm -rf dist lib views && webpack --env production --progress"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,8 @@
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.2.3",
     "css-loader": "^4.3.0",
+    "eslint": "^8.5.0",
+    "eslint-plugin-react": "^7.27.1",
     "html-webpack-plugin": "^4.5.0",
     "less-loader": "^7.0.1",
     "path": "^0.12.7",
@@ -34,12 +36,15 @@
     "whatwg-fetch": "^3.6.2"
   },
   "dependencies": {
+    "consolidate": "^0.16.0",
     "cookie-parser": "^1.4.6",
     "copy-webpack-plugin": "^6.2.0",
+    "dustjs-helpers": "^1.7.4",
     "express": "^4.17.2",
     "file-loader": "^6.2.0",
     "history": "^5.1.0",
     "http": "^0.0.1-security",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",

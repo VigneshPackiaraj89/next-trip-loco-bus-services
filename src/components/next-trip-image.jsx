@@ -1,5 +1,6 @@
 import React from 'react'
 import './next-trip-image.less'
+import { PropTypes } from 'prop-types';
 
 export const NextTripImage = (props) => {
     return(
@@ -11,3 +12,7 @@ export const NextTripImage = (props) => {
         </div>
     </div>)
 }
+
+NextTripImage.propTypes = {
+    page: PropTypes.string
+};

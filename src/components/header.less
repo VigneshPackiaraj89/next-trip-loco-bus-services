@@ -35,6 +35,55 @@
     background-repeat: no-repeat;
 }
 
+#header .navbar .navbar-nav .nav-item .dropdown-toggle::after {
+    position: relative;
+    top: 1rem;
+    left: 0.25rem;
+    content: '';
+    background-image: url(./static-assets/chevron-down-gray.svg);
+    background-repeat: no-repeat;
+    background-size: 1.2rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: none;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.3s -webkit-transform ease-in-out;
+    transition: 0.3s -webkit-transform ease-in-out;
+    transition: 0.3s transform ease-in-out;
+    transition: 0.3s transform ease-in-out, 0.3s -webkit-transform ease-in-out;
+}
+
+#header .navbar .navbar-nav .nav-item .dropdown-toggle:hover::after,
+ #header .navbar .navbar-nav .nav-item .dropdown-toggle:focus::after {
+    position: relative;
+    top: 1rem;
+    left: 0.25rem;
+    content: '';
+    background-image: url(./static-assets/chevron-down-white.svg);
+    background-repeat: no-repeat;
+    background-size: 1.2rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: none;
+}
+
+#header .navbar .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item {
+    border-bottom: none;
+    font-size: 1.825rem !important;
+    color: #047db5;
+    padding: 0.25rem 2rem;
+}
+
+#header .navbar .navbar-nav .nav-item .nav-link:focus-within {
+    color: #fff;
+    background-color: #0097d0;
+}
+
+.dropdown-toggle.schedule::after {
+    display: none;
+}
+
 @media (min-width: 1200px){
     #header .navbar .utilities {
         border-left: 1px solid #e3e3e0;
@@ -50,6 +99,7 @@
         height: 7rem;
         background-position-x: center;
         background-position-y: center;
+        border-left: 0.01rem solid lightgrey;
     }
 
     a.nav-link.store-icon, a.nav-link.search-icon, a.nav-link.avtar-icon {
@@ -69,35 +119,13 @@
         padding: 0.25rem 2rem;
     }
 
-    #header .navbar .navbar-nav .nav-item .dropdown-toggle::after {
-        position: relative;
-        top: 1rem;
-        left: 0.25rem;
-        content: '';
-        background-image: url(./static-assets/chevron-down-gray.svg);
-        background-repeat: no-repeat;
-        background-size: 1.2rem;
-        width: 1.75rem;
-        height: 1.75rem;
-        border: none;
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-        -webkit-transition: 0.3s -webkit-transform ease-in-out;
-        transition: 0.3s -webkit-transform ease-in-out;
-        transition: 0.3s transform ease-in-out;
-        transition: 0.3s transform ease-in-out, 0.3s -webkit-transform ease-in-out;
+    .show-only-for-small-view {
+        display: none
     }
 
-    #header .navbar .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item {
-        border-bottom: none;
-        font-size: 1.825rem !important;
-        color: #047db5;
-        padding: 0.25rem 2rem;
-    }
-
-    .dropdown-toggle.schedule::after {
-        display: none;
-    }
+    a.nav-link.dropdown-toggle {
+        padding: 2rem !important;
+    }    
 }
 
 @media (min-width: 768px) {
@@ -106,10 +134,40 @@
         padding-left: 0;
     }
     font-size: 1.25rem !important;
+
+    button.navbar-toggler.menubar::after { 
+        border: 0;
+        margin-left: auto;
+    }
 }
 
-a.nav-link.dropdown-toggle {
-    padding: 2rem !important;
+@media (max-width: 1199px) {
+    #header .navbar .navbar-nav .nav-item {
+        border-bottom: 1px solid #e3e3e0;
+    }
+    a.nav-link.go-to-icon {
+        background-size: 3.5rem;
+        width: 6.6875rem;
+        height: 5rem;
+        background-position-x: center;
+        background-position-y: center;
+    }
+
+    a.nav-link.store-icon, a.nav-link.search-icon, a.nav-link.avtar-icon {
+        background-size: 2.5rem;
+        width: 6.6875rem;
+        height: 5rem;
+        background-position-x: center;
+        background-position-y: center;
+    }
+
+    .show-only-for-small-view {
+        display: block
+    }
+
+    a.nav-link.dropdown-toggle {
+        padding: 0.5rem !important;
+    } 
 }
 
 #header .navbar .navbar-nav .nav-item.show .nav-link::after {
@@ -117,4 +175,9 @@ a.nav-link.dropdown-toggle {
     transform: rotate(-180deg);
     top: 0.6rem;
     left: 0rem;
+}
+
+.menubar {
+    margin-left: auto;
+    border: 0;
 }

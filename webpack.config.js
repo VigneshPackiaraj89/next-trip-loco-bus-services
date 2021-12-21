@@ -69,19 +69,19 @@ function getPlugins(isProduction) {
 		return [
 			new webpack.DefinePlugin({'process.env.NODE_ENV': '"production"'}),
 			new HtmlWebpackPlugin({
-				template: './templates/next-trip.ejs',
-				filename: '../views/main.dust'
+				template: './templates/next-trip.html',
+				filename: 'index.html'
 			}),
 			new CopyWebpackPlugin({
 				patterns: [
-				  { from: "src/components/static-assets", to: "static-assets" }
+				{ from: "src/components/static-assets", to: "static-assets" }
 				]})
 		]
 	}
 	return [
 		new webpack.DefinePlugin({'process.env.NODE_ENV': '"development"'}),
 		new HtmlWebpackPlugin({
-			template: './templates/next-trip.ejs',
+			template: './templates/next-trip.html',
 			filename: 'index.html'
 		}
 		),
