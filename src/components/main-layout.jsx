@@ -6,8 +6,8 @@ import {InitialPage} from './intial-page'
 export const Mainlayout = () => {
     return (
         <Switch>
-            <Route path='/nextrip*' render={ (props) => { return <NextTripMainComponent />}}/>
-            <Route path='*' render={(props) => {return <InitialPage />}}/>    
+            <Route path='/nextrip*' render={ () => { return <NextTripMainComponent />}}/>
+            <Route path='*' render={() => {return <InitialPage />}}/>    
         </Switch>
     )
 }

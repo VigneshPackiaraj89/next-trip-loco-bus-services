@@ -5,8 +5,8 @@ export function busdirections(state = {directionData:[]}, action = {}) {
         case Types. STORE_DIRECTIONS:
             return {...state, directionData: action.data, directionApiError: false}
 
-        case Types.STORE_ROUTES_INFO:
-                return {...state, directionData: {}, directionApiError: true}
+        case Types.DIRECTIONS_API_ERROR:
+                return {...state, directionData: [], directionApiError: true}
     
     default:    
         return state    

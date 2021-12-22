@@ -1,4 +1,7 @@
 
+@light-grey:#626462;
+@white:   #fff;
+
 html {
     font-size: 10px
 }
@@ -8,9 +11,12 @@ body {
     margin: 0;
     font-weight: 400;
     line-height: 1.5;
-    color: #626462;
+    color: @light-grey;
     text-align: left;
-    background-color: #fff;
+    background-color: @white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .padding-right {

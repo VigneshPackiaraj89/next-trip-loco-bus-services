@@ -8,6 +8,7 @@ import {getStationDetails} from '../actions/get-station-details'
 import {ErrorHandling} from  './error-handling'
 import * as Types from '../actions/action-types'
 import {BusTimingsTable} from './bus-timings-table'
+import pinblue from './static-assets/pin-blue.svg'
 
 export const NextTrip = () => {
     const dispatch = useDispatch()
@@ -88,10 +89,12 @@ export const NextTrip = () => {
             <div className="d-flex justify-content-center mb-4 pills">
                 <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li className="nav-item" role="presentation">
-                        <a className={byRoute ? `nav-link nextrip-tab active` : `nav-link nextrip-tab`} onClick={()=> resetSearchCriteria(true)}id="byRouteTab" data-toggle="pill" href="#byRoute" role="tab" aria-controls="byRouteTab" aria-selected="true">By route</a>
+                        <a className={byRoute ? `nav-link nextrip-tab active` : `nav-link nextrip-tab`} onClick={()=> resetSearchCriteria(true)}id="byRouteTab" 
+                        data-toggle="pill" href="#byRoute" role="tab" aria-controls="byRouteTab" aria-selected="true">By route</a>
                     </li>
                     <li className="nav-item" role="presentation">
-                        <a className={byRoute ? `nav-link nextrip-tab` : `nav-link nextrip-tab active`} onClick={()=> resetSearchCriteria(false)} id="byStopNumTab" data-toggle="pill" href="#byRouteNum" role="tab" aria-controls="byRouteNumTab" aria-selected="false">By stop #</a>
+                        <a className={byRoute ? `nav-link nextrip-tab` : `nav-link nextrip-tab active`} onClick={()=> resetSearchCriteria(false)} 
+                        id="byStopNumTab" data-toggle="pill" href="#byStopNumTab" role="tab" aria-controls="byStopNumTab" aria-selected="false">By stop #</a>
                     </li>
                 </ul>       
             </div>
@@ -104,7 +107,7 @@ export const NextTrip = () => {
                             <div className="form-group select-route">
                                 <select id="ntRoute" name="ntRoute" className="custom-select" onChange={trackChange} value={busroute}>
                                     <option selected="">Select route</option>
-                                    {data && data.map((item, index) => {
+                                    {data?.map((item, index) => {
                                         return <option key= {index} value={item.route_id}> {item.route_label} </option>
                                     })}
                                 </select>
@@ -112,7 +115,7 @@ export const NextTrip = () => {
                             {busroute && <div className="form-group select-route">
                                 <select id="ntDirection" name="ntDirection" className="custom-select"  onChange={trackDirection} value={busdirection}>
                                     <option selected="">Select direction</option>
-                                    {directionData && directionData.map((item, index) => {
+                                    {directionData?.map((item, index) => {
                                         return <option key= {index} value={item.direction_id}> {item.direction_name} </option>
                                     })}
                                 </select>
@@ -120,7 +123,7 @@ export const NextTrip = () => {
                             {busdirection &&  <div className="form-group select-route">
                                 <select id="ntStop" name="ntStop" className="custom-select" onChange={trackStop} value={busstop}>
                                     <option selected="">Select stop</option>
-                                    {stopsData && stopsData.map((item, index) => {
+                                    {stopsData?.map((item, index) => {
                                         return <option key= {index}  value={item.place_code}> {item.description} </option>
                                     })}
                                 </select>
@@ -130,7 +133,7 @@ export const NextTrip = () => {
                         <fieldset className="mb-0">
                             <legend className="sr-only">Real-time departures by stop</legend>
                             <div className="input-group mb-3" id="search-input-group" >
-                                <input type="text" id="search-input" className="form-control" aria-label="Enter stop number" aria-describedby="basic-addon2" onKeyPress={handleChange} required/>                                    
+                                <input type="number" id="search-input" className="form-control" aria-label="Enter stop number" aria-describedby="basic-addon2" onKeyPress={handleChange} required/>                                    
                                 <label className="form-control-placeholder" htmlFor="name">Enter stop number</label>
                                 <div className="input-group-append">
                                     <button id="search" className="btn btn-outline-secondary" type="button" onClick={() => dispatchStopNumber()}> <i className="fa fa-search"></i></button>
@@ -140,6 +143,12 @@ export const NextTrip = () => {
                         }
                     </div>
                 </div>
+            </div>
+            <div className="text-right d-lg-none">
+                <span id="ntrUseCurrentLoc">
+                    <a href="#">Use current
+                        location&nbsp;<img alt="" src={pinblue}/></a>
+                </span>
             </div>
         </div>
         <BusTimingsTable />

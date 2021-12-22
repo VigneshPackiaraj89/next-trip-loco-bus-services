@@ -1,8 +1,5 @@
+@import (reference) '../main-entry.less';
 
-.next-trip {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-}
 .card {
     border: 0rem;
 }
@@ -10,20 +7,7 @@
 h2.text-center.mb-4.mb-lg-5 {
     font-size: 3rem;
     font-weight: 700!important;
-    margin-bottom: 5rem !important; 
-}
-
-.nextrip-tab.active::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    border-top: 8px solid #0097d0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    left: 45%;
-    bottom: -7px;
+    margin-bottom: 5rem !important;
 }
 
 .nextrip-tab {
@@ -34,266 +18,335 @@ h2.text-center.mb-4.mb-lg-5 {
     font-size: 1.125rem !important;
     font-weight: 510;
     position: relative;
-}
-
-.nextrip-tab.active {
-    background-color: #0097d0 !important;
-    color: #fff !important;
+    &.active {
+        background-color: #0097d0 !important;
+        color: #fff !important;
+   }
+    &.active::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        border-top: 8px solid #0097d0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        left: 45%;
+        bottom: -7px;
+   }
 }
 
 .tab-content {
     width: 100%;
     padding-top: 0;
 }
-#nextripDepartures {
-    display: block;
-    margin-top: 6rem;
-}
 
-#nextripDepartures .card {
-    background-color: #f5f5f4 !important;
-    padding: 2rem 0 0 0 !important;
-    width: 100%;
-    margin: auto;
-} 
-
-.nt-show-my-bus {
-    background-color: #f5f5f4 !important;
-    padding: 1rem 0 0 0 !important;
-    width: 100%;
-    margin: auto;
-}
-
-#nextripDepartures .card table thead tr th {
-    background-color: #ffd200;
-    border-top: none;
-    border-bottom: none;
-    text-transform: uppercase;
-    letter-spacing: 1.28px;
-    font-size: 1.7rem;
-    padding: 1rem;
-}
-
-.table th, .table td {
-    padding: 2rem;
-    font-size: 2.3rem;
-}
-
-table.table.departures-table {
-    color: #626462;
-}
-
-.stop-description.mb-3 {
-    display: flex;
-}
-
-span.stop-number {
-    margin-left: auto;
-    margin-right: 2rem;
-    margin-top: 0.5rem;
-}
-
-.accordion .btn {
-    background-color: #f5f5f4;
-    color: #626462;
-    font-size: 18px !important;
-    font-size: 1.125rem !important;
-    margin-bottom: 0;
-    padding: 0.657rem 0.5rem;
-}
-
-.route-number, .depart-time {
-    font-weight: 700
-}
-
-.depart-time {
-    text-align: right!important;
-}
-
-.stop-name {
-    font-weight: 500;
-    margin-left: 2rem;
-    font-size: 3rem;
-}
-
-@media (min-width: 576px) {
-    .next-trip {
-        width: 540px;
-        margin: 0 auto;
-    }
-
-    #nextripDepartures .card .show .h4 {
-        position: relative;
-        color: #626462;
-        line-height: 1.5;
-        margin-left: 3rem;
-        font-size: 1.8rem;
-    }
-}
-
-@media (min-width: 768px){
-    .nextrip-tab {
-        padding: 1.4rem 3rem;
-        font-size: 22px !important;
-    }
-    .form-group, #nextripModule .input-group {
-        max-width: 57rem;
-        margin: 0 auto 1rem auto;
-    }
-    .custom-select{
-        color: #8a8b8a;
-        font-size: 18px !important;
-        font-size: 1.125rem !important;
-        padding: 0.75rem;
-    }
-
-    select#ntRoute, select#ntDirection, select#ntStop, .input-group#search-input-group, input#search-input {
-        height: 6rem;
-        font-size: 23px !important;
-    }
-}
-
-@media (min-width: 992px){
-    select#ntRoute, select#ntDirection, select#ntStop, .input-group#search-input-group, input#search-input {
-        height: 6rem;
-        font-size: 23px !important;
-    }
-    input#search-input {
-        height: 7rem;
-    }
-    .input-group#search-input-group {
-        width: 39%;
-        margin: auto;
-    }
-
-    button.btn.btn-outline-secondary {
-        width: 4rem;
-        font-size: 2.5rem;        
-        border: 1px solid #ced4da;
-        border-left: 0;
-    }
-
-    input#search-input {
-        border-right: 0
-    }
-
-    .next-trip {
-        width: 770px;
-        margin: 0 auto;
-    }
-}
-
-@media (min-width: 1200px) {
-    .next-trip {
-         width: 1140px !important;
-    }
-}
-
-table.departures-table tr:nth-child(n+4) {
-    display: none;
-  }
-
-table.departures-table-render tr:nth-child(n+4) {
-    display: table-row;
-}
-
-.stop-departures {
-    margin-bottom: 2rem;
-}
-
-#nextripDepartures .card .show .h4 {
-    position: relative;
-    color: #626462;
-    line-height: 1.5;
-    margin-left: 3rem;
-    font-size: 1.8rem;
-}
-
-tr {
-    border-bottom: 0.1rem solid grey;
-}
-
-.show.more::before {
-    content: '';
-    background-image: url(./static-assets/circle-plus-blue.svg);
-    background-repeat: no-repeat;
-    background-size: 2rem;
-    width: 2.25rem;
-    height: 2.25rem;
-    position: absolute;
-    top: 0.8rem;
-    left: 1rem;
-}
-
-.show.less::before {
-    content: '';
-    background-image: url(./static-assets/circle-minus-blue.svg);
-    background-repeat: no-repeat;
-    background-size: 2rem;
-    width: 2.25rem;
-    height: 2.25rem;
-    position: absolute;
-    top: 0.8rem;
-    left: 1rem;
-}
-
-button.btn.btn-toggle.show {
-    position: relative;
-}
-
-.form-group {
-    position: relative;
-    margin-bottom: 1.5rem
+.d-flex.justify-content-center.mb-4.pills {
+    margin-bottom: 3rem!important;
 }
 
 .form-control-placeholder {
     position: absolute;
-    top: 0.9rem;
+    top: 0.5rem;
     padding: 7px 0 0 0;
     transition: all 300ms;
     opacity: 0.5;
     left: 2rem;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
+}
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem 
 }
 
-.form-control:focus+.form-control-placeholder, .form-control:valid+.form-control-placeholder  {
-    font-size: 60%;
+.form-control:focus+.form-control-placeholder, .form-control:valid+.form-control-placeholder {
+    font-size: 50%;
     transform: translate3d(0, -57%, 0);
     opacity: 1;
     z-index: 10;
     margin-left: -1.3rem;
     text-transform: uppercase;
+    color: #8a8b8a;
 }
 
-.show-train {
-    margin-right: 0.8rem;
-    width: 3.5rem;
-    margin-top: -1rem;
+.next-trip {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    .nextrip-departures {
+        display: block;
+        margin-top: 6rem;
+        .card {
+            background-color: #f5f5f4 !important;
+            padding: 2rem 0 0 0 !important;
+            width: 100%;
+            margin: auto;
+       }
+        .stop-description.mb-3 {
+            display: flex;
+       }
+        span.stop-number {
+            margin-left: auto;
+            margin-right: 2rem;
+            margin-top: 0.5rem;
+       }
+        .accordion .btn {
+            background-color: #f5f5f4;
+            color: @light-grey;
+            font-size: 18px !important;
+            font-size: 1.125rem !important;
+            margin-bottom: 0;
+            padding: 0.657rem 0.5rem;
+       }
+        .route-number, .depart-time {
+            font-weight: 700 
+       }
+        .depart-time {
+            text-align: right!important;
+       }
+        .stop-name {
+            font-weight: 500;
+            margin-left: 2rem;
+            font-size: 3rem;
+       }
+        .stop-departures {
+            margin-bottom: 2rem;
+            table thead tr th {
+                background-color: #ffd200;
+                border-top: none;
+                border-bottom: none;
+                text-transform: uppercase;
+                letter-spacing: 1.28px;
+                padding: 1rem;
+           }
+            .show .h4 {
+                position: relative;
+                color: @light-grey;
+                line-height: 1.5;
+                margin-left: 3rem;
+                font-size: 1.8rem;
+           }
+            .table th, .table td {
+                padding: 2rem;
+                font-size: 1.8rem;
+           }
+           .table td {
+                font-size: 2rem;
+             }
+            table.table.departures-table {
+                color: @light-grey;
+                tr:nth-child(n+4) {
+                    display: none;
+               }
+           }
+            table.departures-table-render tr:nth-child(n+4) {
+                display: table-row;
+           }
+            tr {
+                border-bottom: 0.1rem solid @light-grey;
+           }
+            .show.more::before {
+                content: '';
+                background-image: url(./static-assets/circle-plus-blue.svg);
+                background-repeat: no-repeat;
+                background-size: 2rem;
+                width: 2.25rem;
+                height: 2.25rem;
+                position: absolute;
+                top: 0.8rem;
+                left: 1rem;
+           }
+            .show.less::before {
+                content: '';
+                background-image: url(./static-assets/circle-minus-blue.svg);
+                background-repeat: no-repeat;
+                background-size: 2rem;
+                width: 2.25rem;
+                height: 2.25rem;
+                position: absolute;
+                top: 0.8rem;
+                left: 1rem;
+           }
+            button.btn.btn-toggle.show {
+                position: relative;
+           }
+            tbody tr td:first-child {
+                width: 14rem;
+                word-break: break-all;
+           }
+            .no-departure {
+                width: 100% !important;
+           }
+            table.table.departures-table-render {
+                color: @light-grey;
+           }
+       }
+   }
+    .nt-show-my-bus {
+        background-color: #f5f5f4 !important;
+        padding: 1rem 0 0 0 !important;
+        width: 100%;
+        margin: auto;
+        .showTrainTxt {
+            font-size: 23px;
+            color: @light-grey;
+        }
+        .show-train {
+            margin-right: 0.8rem;
+            width: 3.5rem;
+            margin-top: -1rem;
+       }
+   }
+    div#showMyBus:hover, .accordion .btn:hover {
+        background-color: #dbf4fd !important;
+   }
+    .underC {
+        margin-left: auto;
+        background-color: yellow;
+   }
 }
 
-div#showMyBus:hover, .accordion .btn:hover  {
-    background-color: #dbf4fd !important;
+.d-lg-none {
+    display: block;
 }
 
-.d-flex.justify-content-center.mb-4.pills {
-    margin-bottom: 3rem!important;
+.nextrip-tab {
+    padding: 1.4rem 3rem;
+    font-size: 22px !important;
 }
-.underC {
-    margin-left: auto;
-    background-color: yellow;
+.form-group, #nextripModule .input-group {
+    max-width: 57rem;
+    margin: 0 auto 1rem auto;
+}
+.custom-select{
+    color: #8a8b8a;
+    font-size: 18px !important;
+    font-size: 1.125rem !important;
+    padding: 0.75rem;
+}
+select#ntRoute, select#ntDirection, select#ntStop, .input-group#search-input-group, input#search-input {
+    height: 6rem;
+    font-size: 23px !important;
 }
 
-tbody tr td:first-child {
-    min-width: 5em;
-    width: 0;
-    max-width: 5em;
-    word-break: break-all;
+@media (max-width: 768px){
+    .next-trip {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        .no-departure {
+            font-size: 1.3rem;
+        }
+        .nextrip-departures {
+            .stop-name {
+                font-weight: 700;
+                margin-left: 2rem;
+                font-size: 2rem;
+                width: 70%;
+            }
+            .stop-departures {
+                .table td, .table th {
+                    font-size: 1.5rem;
+                }
+            
+                .show .h4 {
+                    position: relative;
+                    color: #626462;
+                    line-height: 1.5;
+                    margin-left: 3rem;
+                    font-size: 1.5rem;
+                    top: 0.3rem;
+                }
+            }
+        }
+    }
+    .form-control-placeholder {
+        font-size: 1.8rem;
+    }
+    .nextrip-tab {
+        padding: 1.4rem 3rem;
+        font-size: 17px !important;
+   }
+    .form-group, #nextripModule .input-group {
+        max-width: 57rem;
+        margin: 0 auto 1rem auto;
+   }
+    .custom-select{
+        color: #8a8b8a;
+        font-size: 18px !important;
+        font-size: 1.125rem !important;
+        padding: 0.75rem;
+        animation-timing-function: ease-in;
+   }
+    select#ntRoute, select#ntDirection, select#ntStop, .input-group#search-input-group, input#search-input {
+        height: 5rem;
+        font-size: 17px !important;
+   }
+
+   h2.text-center.mb-4.mb-lg-5 {
+    font-size: 2.2rem;
+    margin-bottom: 3rem !important;
+   }
+   button.btn.btn-outline-secondary {
+        width: 4rem;
+        font-size: 1.7rem;
+        border: 1px solid #ced4da;
+        border-left: 0 !important;
+    }
+    .showTrainTxt {
+        font-size: 17px !important;
+    }
+
+    span#ntrUseCurrentLoc {
+        color: #047db5 !important;
+        margin-right: 4.5rem;
+    }
+}
+@media (min-width: 769px) {
+    select#ntRoute, select#ntDirection, select#ntStop, .input-group#search-input-group, input#search-input {
+        height: 6rem;
+        font-size: 23px !important;
+   }
+    .input-group#search-input-group {
+        width: 50%;
+        margin: auto;
+   }
+    button.btn.btn-outline-secondary {
+        width: 4rem;
+        font-size: 2.5rem;
+        border: 1px solid #ced4da;
+        border-left: 0;
+   }
+    input#search-input {
+        border-right: 0 
+   }
+    .next-trip {
+        width: 700px;
+        margin: 0 auto;
+   }
+
+   span#ntrUseCurrentLoc {
+    color: #047db5 !important;
+    margin-right: 5.5rem;
+    }
 }
 
-.no-departure {
-    width: 100% !important;
+@media (min-width: 992px) {
+    .next-trip {
+        width: 900px;
+        margin: 0 auto;
+   }
+   .d-lg-none {
+    display: none;
+    }
 }
 
-table.table.departures-table-render {
-    color: #626462;
+@media (min-width: 1200px) {
+    .next-trip {
+        width: 1140px !important;
+   }
+   .d-lg-none {
+       display: none;
+   }
 }

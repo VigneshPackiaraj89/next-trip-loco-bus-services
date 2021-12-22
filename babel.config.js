@@ -2,5 +2,7 @@ module.exports = {
     presets: [
         '@babel/preset-react',
     ],
-    plugins: []
+    plugins : [
+        ["@babel/plugin-proposal-optional-chaining", {"loose": false}]
+    ]
 }

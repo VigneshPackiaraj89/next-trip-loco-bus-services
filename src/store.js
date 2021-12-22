@@ -20,14 +20,6 @@ export default function makeStore() {
             )
         )
     )
-    let store
-    if (module.hot) {
-        store = global.__REDUX_STORE = global.__REDUX_STORE || configureStore()
-        module.hot.accept('./reducers', () => store.replaceReducer(require('./reducers').default))
-        module.hot.accept()
-    }
-    else {
-        store = configureStore()
-    }
+    let store = configureStore()
     return store
 }

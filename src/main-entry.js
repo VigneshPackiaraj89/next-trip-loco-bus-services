@@ -5,7 +5,6 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import './main-entry.less'
 import makeStore from './store' 
 import {Mainlayout} from './components/main-layout'
-import {Footer} from './components/footer'
 
 const store = makeStore()
 
@@ -16,7 +15,6 @@ ReactDOM.render(
                     <Switch>
                         <Route path='*' component={Mainlayout}/>    
                     </Switch>
-                    <Footer />
                 </div>
         </BrowserRouter>
     </Provider>, document.getElementById('next-trip-wrapper'))
