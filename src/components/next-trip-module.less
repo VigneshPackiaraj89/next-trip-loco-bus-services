@@ -4,6 +4,15 @@
     border: 0rem;
 }
 
+.inputValidation {
+    color: red;
+    text-align: center;
+}
+
+.invalid {
+    border-color: red !important;
+}
+
 h2.text-center.mb-4.mb-lg-5 {
     font-size: 3rem;
     font-weight: 700!important;
@@ -53,7 +62,9 @@ h2.text-center.mb-4.mb-lg-5 {
     opacity: 0.5;
     left: 2rem;
     font-size: 2.3rem;
+    pointer-events: none;
 }
+
 .form-group {
     position: relative;
     margin-bottom: 1.5rem 
@@ -300,9 +311,22 @@ select#ntRoute, select#ntDirection, select#ntStop, .input-group#search-input-gro
 
     span#ntrUseCurrentLoc {
         color: #047db5 !important;
-        margin-right: 4.5rem;
+        margin-right: 3.5rem;
     }
 }
+
+@media (min-width: 350px) and (max-width: 600px){
+    span#ntrUseCurrentLoc {
+        margin-right: 0.5rem;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 768px){
+    span#ntrUseCurrentLoc {
+        margin-right: 5.5rem;
+    }
+}
+
 @media (min-width: 769px) {
     select#ntRoute, select#ntDirection, select#ntStop, .input-group#search-input-group, input#search-input {
         height: 6rem;

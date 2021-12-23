@@ -21,6 +21,9 @@ export const NextTrip = () => {
     const [busdirection, setBusDirection] = React.useState('')
     const [busstop, setStop] = React.useState('')
     const [byRoute, setByRoute] = React.useState(true)
+    const [locUrlSet, setlocUrl] = React.useState(false)
+    const [showError, setShowError] = React.useState(false)
+
     const [userInputStopNo, setUserInputStopNo] = React.useState(0)
     
     const handleChange = (event) => {
@@ -34,10 +37,12 @@ export const NextTrip = () => {
         let locUrl = window.location.pathname.split('/')
         if(locUrl.length === 5) {
             dispatch(getStationDetails(locUrl[4], locUrl[3], locUrl[2]))
+            setlocUrl(true)
             setByRoute(true)
         } else if(locUrl.length === 3) {
             dispatch(getStopsNumber(locUrl[2]))
             setByRoute(false)
+            setlocUrl(true)
             setUserInputStopNo(locUrl[2])
         }
     },[])
@@ -59,13 +64,20 @@ export const NextTrip = () => {
     const trackStop= (e) => {
         const {value} = e.target
         setStop(value)
-        dispatch(getStationDetails(value, busdirection, busroute))
+        setlocUrl(false)
+        {value !== 'Select stop' && dispatch(getStationDetails(value, busdirection, busroute))}
     }
 
     const dispatchStopNumber = () => {
         let stopNumber = document.getElementById('search-input').value
-        setUserInputStopNo(stopNumber)
-        if(stopNumber !== ''){
+        // eslint-disable-next-line no-useless-escape
+        if(/[^\d\.]/.test(stopNumber) || stopNumber === '') {
+            setShowError(true)
+            setUserInputStopNo('')
+            setlocUrl(false)
+        } else {
+            setShowError(false)
+            setUserInputStopNo(stopNumber)
             dispatch(getStopsNumber(stopNumber))
         }
         document.getElementById('search-input').value = ''
@@ -77,6 +89,8 @@ export const NextTrip = () => {
         setBusDirection('')
         setStop('')
         setUserInputStopNo('')
+        setlocUrl(false)
+        setShowError(false)
         dispatch({type: Types.RESET_STOPS_INFO})
     }
     
@@ -137,12 +151,13 @@ export const NextTrip = () => {
                         <fieldset className="mb-0">
                             <legend className="sr-only">Real-time departures by stop</legend>
                             <div className="input-group mb-3" id="search-input-group" >
-                                <input type="number" id="search-input" className="form-control" aria-label="Enter stop number" aria-describedby="basic-addon2" onKeyPress={handleChange} required/>                                    
+                                <input type="number" id="search-input" className={showError ? "form-control invalid" : "form-control"} aria-label="Enter stop number" aria-describedby="basic-addon2" onKeyPress={handleChange} required/>                                    
                                 <label className="form-control-placeholder" htmlFor="name">Enter stop number</label>
                                 <div className="input-group-append">
-                                    <button id="search" className="btn btn-outline-secondary" type="button" onClick={() => dispatchStopNumber()}> <i className="fa fa-search"></i></button>
+                                    <button id="search" className={showError ? "btn btn-outline-secondary invalid" : "btn btn-outline-secondary"} type="button" onClick={() => dispatchStopNumber()}> <i className="fa fa-search"></i></button>
                                 </div>
-                                </div>
+                            </div>
+                            <div className="inputValidation">{showError && 'Please enter a valid number.'}</div>
                         </fieldset>
                         }
                     </div>
@@ -155,8 +170,8 @@ export const NextTrip = () => {
                 </span>
             </div>
         </div>
-        { ((busdirection && busroute && busstop && busdirection !== 'Select direction' && busroute!== 'Select route' && busstop!=='Select stop')
-            || userInputStopNo) ? <BusTimingsTable /> : null }
-        <ErrorHandling userInputStopNo={userInputStopNo}/>
+        { ((busdirection && busroute && busstop && busdirection !== 'Select direction' && busroute!== 'Select route' && busstop!=='Select stop' && !showError)
+            || userInputStopNo || locUrlSet ) ? <BusTimingsTable /> : null }
+        {!showError && <ErrorHandling userInputStopNo={userInputStopNo}/>}
     </div>)
 }

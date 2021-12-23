@@ -367,3 +367,44 @@ Child HtmlWebpackCompiler:
     Entrypoint HtmlWebpackPlugin_0 = __child-HtmlWebpackPlugin_0
     [./node_modules/html-webpack-plugin/lib/loader.js!./templates/next-trip.html] 1.42 KiB {HtmlWebpackPlugin_0} [built]
 [34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+
+> next-trip-loco-bus-services@1.0.0 start
+> webpack-dev-server --env development
+
+[34mℹ[39m [90m｢wds｣[39m: Project is running at http://0.0.0.0:8081/
+[34mℹ[39m [90m｢wds｣[39m: webpack output is served from /
+[34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /Users/vigneshp/next-trip-loco-bus-services
+[34mℹ[39m [90m｢wds｣[39m: 404s will fallback to /index.html
+[34mℹ[39m [90m｢wdm｣[39m: Hash: e946b5028e4866edba73
+Version: webpack 4.46.0
+Time: 832ms
+Built at: 12/23/2021 2:27:21 PM
+                                                       Asset      Size  Chunks                         Chunk Names
+assets/MetroTransitLogo-312e7d51dcd261b8798a12c566862d5c.svg  3.18 KiB          [emitted] [immutable]  
+ assets/contact-section-3d5cfb03956defc551b9b9b65ae25338.png   765 KiB          [emitted] [immutable]  
+      assets/mainimage-d98092293b09dcbd86c0c0cf5bebb160.jpeg   476 KiB          [emitted] [immutable]  
+      assets/park-ride-3991509bfdcc8d59afc503d2f703e8a1.jpeg   380 KiB          [emitted] [immutable]  
+                                                  index.html  1.22 KiB          [emitted]              
+                                main-e946b5028e4866edba73.js  1.84 MiB    main  [emitted] [immutable]  main
+Entrypoint main = main-e946b5028e4866edba73.js
+[0] multi (webpack)-dev-server/client?http://0.0.0.0:8081 (webpack)/hot/only-dev-server.js whatwg-fetch ./src/main-entry.js 64 bytes {main} [built]
+[./node_modules/react-dom/index.js] 1.33 KiB {main} [built]
+[./node_modules/react-redux/es/index.js] 297 bytes {main} [built]
+[./node_modules/react-router-dom/es/index.js] 1010 bytes {main} [built]
+[./node_modules/react/index.js] 190 bytes {main} [built]
+[./node_modules/webpack-dev-server/client/index.js?http://0.0.0.0:8081] (webpack)-dev-server/client?http://0.0.0.0:8081 4.29 KiB {main} [built]
+[./node_modules/webpack-dev-server/client/overlay.js] (webpack)-dev-server/client/overlay.js 3.52 KiB {main} [built]
+[./node_modules/webpack-dev-server/client/socket.js] (webpack)-dev-server/client/socket.js 1.53 KiB {main} [built]
+[./node_modules/webpack-dev-server/client/utils/createSocketUrl.js] (webpack)-dev-server/client/utils/createSocketUrl.js 2.91 KiB {main} [built]
+[./node_modules/webpack-dev-server/client/utils/log.js] (webpack)-dev-server/client/utils/log.js 964 bytes {main} [built]
+[./node_modules/webpack-dev-server/client/utils/reloadApp.js] (webpack)-dev-server/client/utils/reloadApp.js 1.59 KiB {main} [built]
+[./node_modules/webpack-dev-server/client/utils/sendMessage.js] (webpack)-dev-server/client/utils/sendMessage.js 402 bytes {main} [built]
+[./node_modules/webpack/hot/only-dev-server.js] (webpack)/hot/only-dev-server.js 2.52 KiB {main} [built]
+[./node_modules/whatwg-fetch/fetch.js] 16.3 KiB {main} [built]
+[./src/main-entry.js] 705 bytes {main} [built]
+    + 163 hidden modules
+Child HtmlWebpackCompiler:
+     1 asset
+    Entrypoint HtmlWebpackPlugin_0 = __child-HtmlWebpackPlugin_0
+    [./node_modules/html-webpack-plugin/lib/loader.js!./templates/next-trip.html] 1.42 KiB {HtmlWebpackPlugin_0} [built]
+[34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.

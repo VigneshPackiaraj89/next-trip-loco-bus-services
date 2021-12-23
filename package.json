@@ -14,7 +14,7 @@
     "start-background": "if ! nc -z localhost 8081; then nohup npm start; fi",
     "start-node": "node server.js",
     "test": "jest --coverage",
-    "go:jenkins": "npm run lint && npm run test && npm run build && npm run package-node && npm run cypress-test"
+    "go:jenkins": "npm run lint && npm run test && npm run build && npm run package-node"
   },
   "repository": {
     "type": "git",
