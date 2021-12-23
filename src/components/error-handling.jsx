@@ -9,12 +9,15 @@ export const ErrorHandling = (props) => {
     const {storeShopError} = useSelector(state => state.busstops)
     const {storeRouteApiError} = useSelector(state => state.busroutes)
 
-    return(
-        detailsError ? 
-         <div className="displayError" id="displayError"> 
+    return (
+        detailsError ?
+            <div className="displayError" id="displayError">
                 {props.userInputStopNo} is not a valid stop number.
-        </div>: (directionApiError || storeShopError || storeRouteApiError) ?
-            <div className="displayError" id="displayError">Please try again</div>:null
+            </div>
+            :
+            (directionApiError || storeShopError || storeRouteApiError) ?
+                <div className="displayError" id="displayError">Please try again</div>
+                : null
     )
 }
 ErrorHandling.propTypes = {

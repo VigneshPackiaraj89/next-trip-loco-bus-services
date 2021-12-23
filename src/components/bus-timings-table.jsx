@@ -15,7 +15,7 @@ export const BusTimingsTable = () => {
             else {
                 document.getElementById(`rowid_1`)?.scrollIntoView({behavior: "smooth"})
             }
-        },500)
+        },250)
     }
 
     return (<React.Fragment>
@@ -24,7 +24,7 @@ export const BusTimingsTable = () => {
                 <a name="nextriptop"></a>
                 <div className="stop-description mb-3">
                     <span><h3 className="h2 stop-name">{busDetailsData?.stops[0]?.description}</h3></span>
-                    <span className="stop-number"><strong>Stop #: </strong>{busDetailsData.stops[0].stop_id}</span>
+                    <span className="stop-number"><strong>Stop #: </strong>{busDetailsData?.stops[0]?.stop_id}</span>
                 </div>
                 <div className="stop-departures" id="stop-departures">
                     <table className={tblRerender ? "table departures-table-render" : "table departures-table"}>
@@ -51,7 +51,8 @@ export const BusTimingsTable = () => {
                         </tbody>
                     </table>
                     {busDetailsData?.departures?.length > 3 &&
-                        <button type="button" className={tblRerender ? `btn btn-toggle show less` : `btn btn-toggle show more`} aria-expanded="false" onClick={() => scrollandopen(busDetailsData?.departures?.length)}>
+                        <button type="button" className={tblRerender ? `btn btn-toggle show less` : `btn btn-toggle show more`} aria-expanded="false" 
+                        onClick={() => scrollandopen(busDetailsData?.departures?.length)}>
                             <span className="h4">Departures</span>
                         </button>}
                 </div>
@@ -62,7 +63,7 @@ export const BusTimingsTable = () => {
                 <button type="button" className="btn d-flex align-items-center btn-block text-left" data-toggle="collapse" data-target="#collapseMap" aria-expanded="true">
                     <img className='show-train' src={showTrain} />
                     <h3 className='showTrainTxt'>Show my train</h3>
-                    <h3 className='underC'>Under Construction</h3>
+                    <h4 className='underC'>Under Construction</h4>
                 </button>
             </div>}
     </React.Fragment>)

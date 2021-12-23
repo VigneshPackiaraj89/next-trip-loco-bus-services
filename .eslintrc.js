@@ -18,5 +18,22 @@ module.exports = {
         "react"
     ],
     "rules": {
-    }
+    },
+    "overrides": [
+        {
+          "files": [
+            "**/*.spec.js",
+            "**/*.spec.jsx"
+          ],
+          "env": {
+            "jest": true
+          }
+        }
+      ],
+      "globals": {
+          "React": true,
+          "beforeAll": true,
+          "global": true,
+          "jest": true
+      }
 };

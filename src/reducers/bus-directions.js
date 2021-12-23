@@ -7,7 +7,7 @@ export function busdirections(state = {directionData:[]}, action = {}) {
 
         case Types.DIRECTIONS_API_ERROR:
                 return {...state, directionData: [], directionApiError: true}
-    
+       
     default:    
         return state    
     }

@@ -6,9 +6,11 @@ export function getStationDetails(stop, direction, route) {
     const url = `${API_DOMAIN}/${route}/${direction}/${stop}`
     return(dispatch) => {
         try{
-            baseFetch(url).then((data)=> {
+            return baseFetch(url).then((data)=> {
                 dispatch({type: Types.STORE_BUS_DETAILS, data})
                 window.history.pushState('', '', `/nextrip/${route}/${direction}/${stop}`);
+            }).catch(() => {
+                dispatch({type: Types.BUS_DETAILS_API_ERROR})
             })
         }catch(e) {
             dispatch({type: Types.BUS_DETAILS_API_ERROR})

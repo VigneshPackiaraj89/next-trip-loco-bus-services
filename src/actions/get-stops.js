@@ -6,8 +6,12 @@ export function getStops(direction, route) {
     const url =   `${API_DOMAIN}/Stops/${route}/${direction}`
     return(dispatch) => {
         try{
-            baseFetch(url).then((data)=> {
-                dispatch({type: Types.STORE_STOPS, data})
+            return baseFetch(url).then((data)=> {
+                if(data.status !== 400){
+                    dispatch({type: Types.STORE_STOPS, data})
+                }
+            }).catch(() => {
+                dispatch({type: Types.STOPS_API_ERROR})
             })
         }catch(e) {
             dispatch({type: Types.STOPS_API_ERROR})

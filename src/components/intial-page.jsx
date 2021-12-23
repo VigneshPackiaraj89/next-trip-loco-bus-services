@@ -8,6 +8,5 @@ export const InitialPage = () => {
         <div className={`initial-page-container`}>
             <Header />
             <NextTripImage page="initial"/>
-            <div className="busroutes"></div>
         </div>)
 }

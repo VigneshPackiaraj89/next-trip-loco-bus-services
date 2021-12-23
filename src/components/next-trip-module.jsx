@@ -65,7 +65,10 @@ export const NextTrip = () => {
     const dispatchStopNumber = () => {
         let stopNumber = document.getElementById('search-input').value
         setUserInputStopNo(stopNumber)
-        dispatch(getStopsNumber(stopNumber))
+        if(stopNumber !== ''){
+            dispatch(getStopsNumber(stopNumber))
+        }
+        document.getElementById('search-input').value = ''
     }
 
     const resetSearchCriteria = (byRoute) => {
@@ -73,6 +76,7 @@ export const NextTrip = () => {
         setBusRoute('')
         setBusDirection('')
         setStop('')
+        setUserInputStopNo('')
         dispatch({type: Types.RESET_STOPS_INFO})
     }
     
@@ -81,7 +85,7 @@ export const NextTrip = () => {
         var elem2 = document.getElementById("displayError")
         elem ? elem.scrollIntoView({behavior: "smooth"}) : elem2 && elem2.scrollIntoView({behavior: "smooth"}) 
     },[busDetailsData])
-
+ 
     return(
     <div className={`next-trip`}>
         <div className="card mb-4">
@@ -89,7 +93,7 @@ export const NextTrip = () => {
             <div className="d-flex justify-content-center mb-4 pills">
                 <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li className="nav-item" role="presentation">
-                        <a className={byRoute ? `nav-link nextrip-tab active` : `nav-link nextrip-tab`} onClick={()=> resetSearchCriteria(true)}id="byRouteTab" 
+                        <a className={byRoute ? `nav-link nextrip-tab active` : `nav-link nextrip-tab`} onClick={()=> resetSearchCriteria(true)} id="byRouteTab" 
                         data-toggle="pill" href="#byRoute" role="tab" aria-controls="byRouteTab" aria-selected="true">By route</a>
                     </li>
                     <li className="nav-item" role="presentation">
@@ -107,23 +111,23 @@ export const NextTrip = () => {
                             <div className="form-group select-route">
                                 <select id="ntRoute" name="ntRoute" className="custom-select" onChange={trackChange} value={busroute}>
                                     <option selected="">Select route</option>
-                                    {data?.map((item, index) => {
+                                    {Array.isArray(data) && data.length > 0 && data?.map((item, index) => {
                                         return <option key= {index} value={item.route_id}> {item.route_label} </option>
                                     })}
                                 </select>
                             </div>
-                            {busroute && <div className="form-group select-route">
+                            {busroute && busroute!== 'Select route' && <div className="form-group select-route">
                                 <select id="ntDirection" name="ntDirection" className="custom-select"  onChange={trackDirection} value={busdirection}>
                                     <option selected="">Select direction</option>
-                                    {directionData?.map((item, index) => {
+                                    { Array.isArray(directionData) && directionData?.map((item, index) => {
                                         return <option key= {index} value={item.direction_id}> {item.direction_name} </option>
                                     })}
                                 </select>
                             </div>}
-                            {busdirection &&  <div className="form-group select-route">
+                            {busdirection && busdirection !== 'Select direction' &&  <div className="form-group select-route">
                                 <select id="ntStop" name="ntStop" className="custom-select" onChange={trackStop} value={busstop}>
                                     <option selected="">Select stop</option>
-                                    {stopsData?.map((item, index) => {
+                                    {Array.isArray(stopsData) && stopsData.length > 0 && stopsData?.map((item, index) => {
                                         return <option key= {index}  value={item.place_code}> {item.description} </option>
                                     })}
                                 </select>
@@ -151,7 +155,8 @@ export const NextTrip = () => {
                 </span>
             </div>
         </div>
-        <BusTimingsTable />
+        { ((busdirection && busroute && busstop && busdirection !== 'Select direction' && busroute!== 'Select route' && busstop!=='Select stop')
+            || userInputStopNo) ? <BusTimingsTable /> : null }
         <ErrorHandling userInputStopNo={userInputStopNo}/>
     </div>)
 }

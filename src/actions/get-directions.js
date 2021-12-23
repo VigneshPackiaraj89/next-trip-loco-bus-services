@@ -6,8 +6,12 @@ export function getDirections(route) {
     const url =   `${API_DOMAIN}/Directions/${route}`
     return(dispatch) => {
         try{
-            baseFetch(url).then((data)=> {
-                dispatch({type: Types.STORE_DIRECTIONS, data})
+            return baseFetch(url).then((data)=> {
+                if(data?.status !== 400){
+                    dispatch({type: Types.STORE_DIRECTIONS, data})
+                }
+            }).catch(() => {
+                dispatch({type: Types.DIRECTIONS_API_ERROR})
             })
         }catch(e) {
             dispatch({type: Types.DIRECTIONS_API_ERROR})
