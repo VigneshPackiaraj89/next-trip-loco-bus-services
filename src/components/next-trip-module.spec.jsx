@@ -31,4 +31,17 @@ it('next trip main component gets loaded successfully', () => {
     expect(component.find('fieldset legend').text()).toEqual('Real-time departures by stop')
     component.find('#search-input').simulate('change', { target: { value: '123' } })
 })
+
+it('handleChange', () => {
+
+    let component = renderComp()
+    expect(component.find('.next-trip').length).toEqual(1)
+    expect(component.find('.next-trip h2').text()).toEqual('Real-time Departures')
+    expect(component.find('#byRouteTab').length).toEqual(1)
+    expect(component.find('#byStopNumTab').length).toEqual(1)
+    component.find('#byStopNumTab').simulate('click')
+    component.find('#search-input').simulate('change', { target: { value: '123' } })
+    component.find('#search-input').simulate('keypress', {key: 'Enter'})
+    expect(component.find('fieldset legend').text()).toEqual('Real-time departures by stop')
+})
 })

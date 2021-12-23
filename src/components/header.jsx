@@ -29,7 +29,7 @@ export const Header = () => {
                     <a className="navbar-brand" href="/">
                         <img alt="metro transit home" src={MetroTransitLogo} className="logo d-inline-block" />
                     </a>
-                    <button className="navbar-toggler menubar" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button className="navbar-toggler menubar dropdown-toggle" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         Menu
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
