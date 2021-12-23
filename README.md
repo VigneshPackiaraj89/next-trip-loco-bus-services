@@ -29,6 +29,9 @@ then
 # Integration Test Suite
  Cypress:
  1. npm run cypress-open/npm run cypress-test
+ or 
+ 1. npm run start
+ 2. npx cypress run 
 
 # This command is useful to check whether the code is legitimate to push into ny upper environments
  Go:Jenkins:
