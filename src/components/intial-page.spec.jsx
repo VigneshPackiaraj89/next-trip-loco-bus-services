@@ -9,7 +9,6 @@ it('initial page loaded succesfully', () => {
     expect(component.find('.initial-page-container').length).toEqual(1)
     expect(component.find('Header').length).toEqual(1)
     expect(component.find('NextTripImage').length).toEqual(1)
-    expect(component.find('.busroutes').length).toEqual(1)
 })
 
 })

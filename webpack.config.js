@@ -102,7 +102,6 @@ const devServerConfig = {
 			errors: true,
 			warnings: true
 		},
-		setup: require('./webpack.api.stubs').stubs,
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',

@@ -14,7 +14,7 @@
     "start-background": "if ! nc -z localhost 8081; then nohup npm start; fi",
     "start-node": "node server.js",
     "test": "jest --coverage",
-    "go:jenkins": "npm run test && npm run build && npm run package-node && npm run cypress-test"
+    "go:jenkins": "npm run lint && npm run test && npm run build && npm run package-node && npm run cypress-test"
   },
   "repository": {
     "type": "git",
@@ -40,7 +40,7 @@
     "cookie-parser": "^1.4.6",
     "copy-webpack-plugin": "^6.2.0",
     "css-loader": "^4.3.0",
-    "cypress": "^9.1.1",
+    "cypress": "6.6.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.0",
     "eslint": "^8.5.0",
